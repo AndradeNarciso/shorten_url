@@ -6,16 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "url")
+@Builder
 public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "long")
     private String longUrl;
@@ -23,4 +25,5 @@ public class Url {
     @Column(name = "short")
     private String shortUrl;
 
+    
 }

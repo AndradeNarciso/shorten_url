@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.andrade.shorten_url.domain.Url;
 import com.andrade.shorten_url.dto.UrlRequest;
+import com.andrade.shorten_url.dto.UrlResponse;
 import com.andrade.shorten_url.exception.NonexistentUrlException;
 import com.andrade.shorten_url.service.UrlService;
-
-
 
 @RequestMapping()
 @RestController
@@ -30,9 +28,8 @@ public class UrlController {
     private UrlService service;
 
     @PostMapping("api/v1/url")
-    public ResponseEntity<HttpStatus> longToShortController(@Validated @RequestBody UrlRequest url) {
-        service.longToShortService(url);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<UrlResponse> longToShortController(@Validated @RequestBody UrlRequest url) {
+        return ResponseEntity.status(201).body(service.longToShortService(url));
     }
 
     @GetMapping("/{shortUrl}")
@@ -50,7 +47,7 @@ public class UrlController {
     }
 
     @GetMapping("/urls")
-    public ResponseEntity<List<Url>> getAllUrlController() {
+    public ResponseEntity<List<UrlResponse>> getAllUrlController() {
         return ResponseEntity.status(200).body(service.getAllUrlService());
 
     }

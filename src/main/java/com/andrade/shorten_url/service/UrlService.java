@@ -1,5 +1,7 @@
 package com.andrade.shorten_url.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,14 @@ public class UrlService {
 
     @Transactional(rollbackOn = Exception.class)
     public void longToShortService(UrlRequest url) {
+
         String shortUrl = String.valueOf(encode.encode(String.valueOf(buildShortUrl).getBytes()));
         Url newUrl = Url.builder().longUrl(url.url()).shortUrl(shortUrl).build();
         urlRepository.save(newUrl);
+    }
+
+
+    public List<Url> getAllUrlService(){
+        return urlRepository.findAll();
     }
 }

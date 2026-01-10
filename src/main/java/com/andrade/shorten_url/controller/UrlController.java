@@ -1,5 +1,6 @@
 package com.andrade.shorten_url.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.andrade.shorten_url.domain.Url;
 import com.andrade.shorten_url.dto.UrlRequest;
+import com.andrade.shorten_url.exception.NonexistentUrlException;
 import com.andrade.shorten_url.service.UrlService;
 
-@RequestMapping("api/v1")
+
+
+@RequestMapping()
 @RestController
+
 public class UrlController {
 
     @Autowired
     private UrlService service;
 
-    @PostMapping("/url")
+    @PostMapping("api/v1/url")
     public ResponseEntity<HttpStatus> longToShortController(@Validated @RequestBody UrlRequest url) {
         service.longToShortService(url);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{short_url}")
-    public void getLongUrl(@PathVariable String shortUrl) {
+    @GetMapping("/{shortUrl}")
+    public ResponseEntity<Void> redirectToLongUrl(@PathVariable String shortUrl) {
+        try {
+            String longUrl = service.getByUrlService(shortUrl).getLongUrl();
+
+            return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
+                    .location(URI.create(longUrl))
+                    .build();
+
+        } catch (NonexistentUrlException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/urls")

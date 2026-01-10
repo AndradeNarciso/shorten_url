@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.andrade.shorten_url.domain.Url;
 import com.andrade.shorten_url.dto.UrlRequest;
+import com.andrade.shorten_url.exception.NonexistentUrlException;
 import com.andrade.shorten_url.repository.UrlRepository;
 import com.andrade.shorten_url.util.LocalBase62;
 
@@ -38,6 +39,14 @@ public class UrlService {
     }
 
     public List<Url> getAllUrlService() {
-        return urlRepository.findAll();
+        return urlRepository.findAll().stream().map(url -> {
+            url.setShortUrl(http + url.getShortUrl());
+            return url;
+        }).toList();
+    }
+
+    public Url getByUrlService(String shortUrl) throws NonexistentUrlException {
+        return urlRepository.findByShortUrl(shortUrl).map(url -> url)
+                .orElseThrow(() -> new NonexistentUrlException("Url not found"));
     }
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invalid URL</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8d7da;
+            color: #721c24;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #f5c6cb;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background: #721c24;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background: #501217;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oops </h1>
+        <p th:text="${message}">This URL was not valid. Try another one.</p>
+        <a href="/">Try Again</a>
+    </div>
+</body>
+</html>

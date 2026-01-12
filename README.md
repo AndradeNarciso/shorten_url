@@ -1,7 +1,7 @@
 # shorten_url
 
 <p align="center">
-  <img src="docs/images/home.png" width="600">
+  <img src="doc/images/home.png" width="600">
 </p>
 
 A URL shortening application built with **Spring Boot** and **PostgreSQL**, featuring automatic URL expiration.

@@ -1,10 +1,13 @@
 # shorten_url
 
+![Home Page](docs/images/home.png)
+
+
 A URL shortening application built with **Spring Boot** and **PostgreSQL**, featuring automatic URL expiration.
 
 ---
 
-## 🚀 Prerequisites
+## Prerequisites
 
 Before running the application, make sure you have the following installed:
 
@@ -14,7 +17,7 @@ Before running the application, make sure you have the following installed:
 
 ---
 
-## 🐘 Database (PostgreSQL)
+## Database (PostgreSQL)
 
 The application uses PostgreSQL running in a Docker container.
 

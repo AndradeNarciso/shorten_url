@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>URL Shortener</title>
 
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,11 +22,15 @@
       --text: #0f172a;
       --muted: #64748b;
       --border: #e2e8f0;
-      --shadow: 0 10px 25px rgba(0,0,0,.08);
+      --shadow: 0 10px 25px rgba(0, 0, 0, .08);
       --radius: 14px;
     }
 
-    * { box-sizing: border-box; margin:0; padding:0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -47,11 +52,27 @@
       position: relative;
     }
 
-    header { text-align: center; margin-bottom: 2rem; }
-    header h1 { font-size: 1.9rem; font-weight: 600; color: var(--primary); margin-bottom: .4rem; }
-    header p { font-size: .95rem; color: var(--muted); }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-    form { margin-top: 1.8rem; }
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: .4rem;
+    }
+
+    header p {
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    form {
+      margin-top: 1.8rem;
+    }
+
     input {
       width: 100%;
       padding: 14px 16px;
@@ -60,7 +81,12 @@
       font-size: 1rem;
       transition: .2s;
     }
-    input:focus { outline:none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,.15); }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .15);
+    }
 
     button.primary {
       width: 100%;
@@ -75,7 +101,10 @@
       cursor: pointer;
       transition: .2s;
     }
-    button.primary:hover { background: var(--primary-dark); }
+
+    button.primary:hover {
+      background: var(--primary-dark);
+    }
 
     .result {
       display: none;
@@ -86,7 +115,11 @@
       background: #f0fdf4;
     }
 
-    .result-header { font-weight: 600; color: #065f46; word-break: break-all; }
+    .result-header {
+      font-weight: 600;
+      color: #065f46;
+      word-break: break-all;
+    }
 
     /* Caixa de alerta */
     .alert-box {
@@ -106,7 +139,12 @@
       transition: all 0.3s ease;
     }
 
-    footer { margin-top: 2rem; text-align:center; font-size:.8rem; color: var(--muted); }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: .8rem;
+      color: var(--muted);
+    }
 
     .copy-btn {
       background: none;
@@ -120,8 +158,14 @@
       align-items: center;
     }
 
-    .copy-btn:hover { background: rgba(37,99,235,.12); transform: scale(1.05); }
-    .copy-btn.copied { color: var(--success); }
+    .copy-btn:hover {
+      background: rgba(37, 99, 235, .12);
+      transform: scale(1.05);
+    }
+
+    .copy-btn.copied {
+      color: var(--success);
+    }
 
     .status {
       margin-top: .6rem;
@@ -144,13 +188,7 @@
     </header>
 
     <form id="shortenForm">
-      <input
-        id="longUrl"
-        type="text"
-        placeholder="https://example.com/very/long/url"
-        autocomplete="off"
-        required
-      />
+      <input id="longUrl" type="text" placeholder="https://example.com/very/long/url" autocomplete="off" required />
       <button class="primary" type="submit">Shorten URL</button>
     </form>
 
@@ -158,12 +196,10 @@
       <div class="result-header">
         <span class="short-url" id="shortUrl"></span>
         <button class="copy-btn" id="copyBtn" title="Copy">
-          <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-               viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
           </svg>
         </button>
       </div>
@@ -172,9 +208,12 @@
 
     <footer>
       Simple • Fast • Secure
-     
+
     </footer>
-   <div> <p> Notice: This URL is valid for 24 hours only. After that, it will automatically stop working.</p></div>
+    <div
+      style="text-align: center; margin-top: 1.5rem; padding: 10px 15px; background-color: #fef3f3; color: #16a34a; border-radius: 8px; font-size: 0.95rem; font-weight: 500;">
+      <p> Notice: This URL is valid for 24 hours only. After that, it will automatically stop working.</p>
+    </div>
   </div>
 
   <script>
@@ -212,7 +251,7 @@
         copyBtn.dataset.value = data.shortUrl;
         resultBox.style.display = 'block';
 
-      
+
         alertBox.style.display = 'none';
 
       } catch {
@@ -221,12 +260,12 @@
       }
     });
 
-  
+
     alertBox.addEventListener('click', () => {
       alertBox.style.display = 'none';
     });
 
-  
+
     copyBtn.addEventListener('click', () => {
       const value = copyBtn.dataset.value;
       if (!value) return;
@@ -249,4 +288,5 @@
   </script>
 
 </body>
+
 </html>

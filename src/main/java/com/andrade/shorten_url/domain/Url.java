@@ -1,7 +1,7 @@
 package com.andrade.shorten_url.domain;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

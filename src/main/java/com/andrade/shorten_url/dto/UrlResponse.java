@@ -1,10 +1,13 @@
 package com.andrade.shorten_url.dto;
 
 import lombok.Builder;
-
+import lombok.Data;
 
 @Builder
-public record  UrlResponse(String longUrl, String shortUrl) {
+@Data
+public class UrlResponse {
+
+    private String longUrl;
+    private String shortUrl;
     
-   
 }

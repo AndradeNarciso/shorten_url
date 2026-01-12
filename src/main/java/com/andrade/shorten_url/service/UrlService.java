@@ -3,7 +3,6 @@ package com.andrade.shorten_url.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.andrade.shorten_url.domain.Url;
@@ -24,9 +23,6 @@ public class UrlService {
     @Autowired
     private UrlRepository urlRepository;
 
-    @Value("${http.bady}")
-    private String http;
-
     @Autowired
     private LocalBase62 base62;
 
@@ -39,8 +35,8 @@ public class UrlService {
     @Transactional(rollbackOn = Exception.class)
     public UrlResponse longToShortService(UrlRequest url) {
 
-        if(!validator.isValidUrl(url.url())) {
-             throw  new InvalidUrlException("Url was not valid");
+        if (!validator.isValidUrl(url.url())) {
+            throw new InvalidUrlException("Url was not valid");
         }
 
         Url newUrl = Url.builder().longUrl(url.url()).build();
@@ -48,10 +44,7 @@ public class UrlService {
         String shortUrl = base62.toBase62(savedUrl.getId());
 
         savedUrl.setShortUrl(shortUrl);
-
-        Url urlWithShort=urlRepository.save(savedUrl);
-        urlWithShort.setShortUrl(http+urlWithShort.getShortUrl());
-        return mapperUrl.ToResponse(urlWithShort);
+        return mapperUrl.ToResponse(urlRepository.save(savedUrl));
 
     }
 

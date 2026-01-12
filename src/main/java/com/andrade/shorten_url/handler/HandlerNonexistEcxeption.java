@@ -1,14 +1,17 @@
 package com.andrade.shorten_url.handler;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.util.InvalidUrlException;
+
+import com.andrade.shorten_url.exception.InvalidUrlException;
 
 @ControllerAdvice
-public class InvalidUrlExceptionHandler {
+public class HandlerNonexistEcxeption {
 
     @ExceptionHandler(InvalidUrlException.class)
-    public String handlerInvalidException() {
+    public String handleInvalidUrlException(InvalidUrlException ex, Model model) {
+        model.addAttribute("errorMessage", ex.getMessage());
         return "error/invalidUrl";
     }
 }

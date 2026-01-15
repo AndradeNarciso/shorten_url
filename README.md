@@ -110,4 +110,3 @@ spring.datasource.password=admin123
 
 - Ensure Docker is running before starting the application
 - Adjust configuration values according to the environment (local vs production)
-- Avoid committing sensitive credentials to public repositories
